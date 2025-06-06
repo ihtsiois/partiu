@@ -1,0 +1,140 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+enum CustomerDocumentType {
+  BR_CPF
+  PASSPORT
+}
+
+enum CustomerGender {
+  MALE
+  FEMALE
+  OTHER
+  UNDEFINED
+}
+
+enum EventType {
+  online
+  in_person
+  hybrid
+}
+
+enum EventAgeRating {
+  for_all
+  min_10
+  min_12
+  min_14
+  min_16
+  min_18
+}
+
+model User {
+  id            String @id
+  email         String @unique
+  password_hash String
+
+  display_name String
+
+  events    Event[]
+  customers Customer[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  @@map("users")
+}
+
+model Customer {
+  id      String  @id
+  user    User?   @relation(fields: [user_id], references: [id])
+  user_id String?
+  email   String  @unique
+
+  document_type CustomerDocumentType
+  document      String
+  nationality   String // ISO alpha-2
+
+  legal_name   String
+  birth_date   DateTime
+  gender       CustomerGender
+  phone_number String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  @@unique([document_type, document])
+  @@index([email])
+  @@map("customers")
+}
+
+model Category {
+  id          String @id
+  slug        String @unique
+  title       String
+  description String
+
+  banner_url    String?
+  thumbnail_url String?
+
+  events Event[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  @@map("categories")
+}
+
+model Event {
+  id       String @id
+  slug     String @unique
+  title    String
+  owner    User   @relation(fields: [owner_id], references: [id])
+  owner_id String
+
+  type         EventType
+  is_published Boolean   @default(false)
+  is_private   Boolean   @default(false)
+
+  service_fee Float   @default(10)
+  absorve_fee Boolean @default(false)
+
+  description   String?
+  category      Category? @relation(fields: [category_id], references: [id])
+  category_id   String?
+  banner_url    String?
+  thumbnail_url String?
+  opengraph_url String?
+
+  age_rating EventAgeRating
+
+  start_date      DateTime
+  end_date        DateTime
+  sales_starts_at DateTime
+  sales_ends_at   DateTime
+
+  address_name     String?
+  address_zip_code String?
+  address_country  String?
+  address_region   String?
+  address_city     String?
+  address_line     String?
+  gmaps_url        String?
+
+  facebook_url  String?
+  instagram_url String?
+  twitter_url   String?
+  tiktok_url    String?
+  site_url      String?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  @@map("events")
+}

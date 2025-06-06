@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "lib": ["ES2024"],
+        "module": "NodeNext",
+        "target": "ES2024",
+        "rootDir": ".",
+        "outDir": "./dist",
+        "baseUrl": "./",
+        "paths": {
+            "@/*": ["./src/*"]
+        },
+        "strict": true
+    }
+}

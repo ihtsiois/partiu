@@ -1,0 +1,34 @@
+{
+    "name": "partiu-tickets",
+    "version": "1.0.0",
+    "description": "",
+    "main": "src/server.ts",
+    "scripts": {
+        "dev": "tsx watch src/server.ts"
+    },
+    "author": "Dazzle Co",
+    "license": "ISC",
+    "type": "commonjs",
+    "devDependencies": {
+        "@types/bcrypt": "^5.0.2",
+        "@types/node": "^22.15.21",
+        "@types/validator": "^13.15.1",
+        "prettier": "^3.5.3",
+        "prisma": "^6.9.0",
+        "tsx": "^4.19.4",
+        "typescript": "^5.8.3",
+        "validator": "^13.15.15"
+    },
+    "dependencies": {
+        "@fastify/swagger": "^9.5.1",
+        "@fastify/swagger-ui": "^5.2.2",
+        "@prisma/client": "6.9.0",
+        "bcrypt": "^6.0.0",
+        "dotenv": "^16.5.0",
+        "fastify": "^5.3.3",
+        "fastify-plugin": "^5.0.1",
+        "fastify-type-provider-zod": "^4.0.2",
+        "swagger-themes": "^1.4.3",
+        "zod": "^3.25.42"
+    }
+}
