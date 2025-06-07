@@ -11,7 +11,7 @@ export class PrismaCategoriesRepository implements ICategoriesRepository {
 
     async list(): Promise<Category[]> {
         const categories = await this.db.category.findMany();
-        return categories;
+        return categories.map((c) => new Category(c, c.id));
     }
 
     async findByID(id: string): Promise<Category | null> {

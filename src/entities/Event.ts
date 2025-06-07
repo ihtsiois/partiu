@@ -14,9 +14,9 @@ interface EventProps {
     absorve_fee?: boolean;
     description?: string | null;
     category_id?: string | null;
-    banner_url?: string | null;
-    thumbnail_url?: string | null;
-    opengraph_url?: string | null;
+    banner_asset_id?: string | null;
+    thumbnail_asset_id?: string | null;
+    opengraph_asset_id?: string | null;
     age_rating: EventAgeRating;
     start_date: Date;
     end_date: Date;
@@ -49,9 +49,9 @@ export class Event {
     public absorve_fee: boolean;
     public description: string | null;
     public category_id: string | null;
-    public banner_url: string | null;
-    public thumbnail_url: string | null;
-    public opengraph_url: string | null;
+    public banner_asset_id: string | null;
+    public thumbnail_asset_id: string | null;
+    public opengraph_asset_id: string | null;
     public age_rating: EventAgeRating;
     public start_date: Date;
     public end_date: Date;
@@ -83,9 +83,9 @@ export class Event {
         this.absorve_fee = props.absorve_fee || false;
         this.description = props.description || null;
         this.category_id = props.category_id || null;
-        this.banner_url = props.banner_url || null;
-        this.thumbnail_url = props.thumbnail_url || null;
-        this.opengraph_url = props.opengraph_url || null;
+        this.banner_asset_id = props.banner_asset_id || null;
+        this.thumbnail_asset_id = props.thumbnail_asset_id || null;
+        this.opengraph_asset_id = props.opengraph_asset_id || null;
         this.age_rating = props.age_rating;
         this.start_date = props.start_date;
         this.end_date = props.end_date;

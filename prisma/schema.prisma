@@ -8,6 +8,11 @@ datasource db {
   url      = env("DB_URL")
 }
 
+enum AssetSource {
+  AMZ_S3
+  URL
+}
+
 enum CustomerDocumentType {
   BR_CPF
   PASSPORT
@@ -42,8 +47,9 @@ model User {
 
   display_name String
 
-  events    Event[]
+  assets    Asset[]
   customers Customer[]
+  events    Event[]
 
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
@@ -51,10 +57,28 @@ model User {
   @@map("users")
 }
 
+model Asset {
+  id           String @id
+  owner        User   @relation(fields: [owner_id], references: [id])
+  owner_id     String
+  display_name String
+
+  source         AssetSource
+  resource       String
+  signed_url     Boolean
+  content_type   String
+  content_length Int
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  @@map("assets")
+}
+
 model Customer {
   id      String  @id
   user    User?   @relation(fields: [user_id], references: [id])
-  user_id String?
+  user_id String? @unique
   email   String  @unique
 
   document_type CustomerDocumentType
@@ -80,8 +104,8 @@ model Category {
   title       String
   description String
 
-  banner_url    String?
-  thumbnail_url String?
+  banner_asset_id    String?
+  thumbnail_asset_id String?
 
   events Event[]
 
@@ -105,12 +129,12 @@ model Event {
   service_fee Float   @default(10)
   absorve_fee Boolean @default(false)
 
-  description   String?
-  category      Category? @relation(fields: [category_id], references: [id])
-  category_id   String?
-  banner_url    String?
-  thumbnail_url String?
-  opengraph_url String?
+  description        String?
+  category           Category? @relation(fields: [category_id], references: [id])
+  category_id        String?
+  banner_asset_id    String?
+  thumbnail_asset_id String?
+  opengraph_asset_id String?
 
   age_rating EventAgeRating
 

@@ -2,7 +2,7 @@ import { randomBytes } from 'crypto';
 
 export const genId = (prefix?: string, bytes?: number) => {
     const randomString = randomBytes(bytes || 18).toString('hex');
-    return `${prefix && prefix + '_'}${randomString}`;
+    return `${prefix !== undefined ? prefix + '_' : ''}${randomString}`;
 };
 
 export const slugfy = (string: string, generateNumbers: boolean = false) => {

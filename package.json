@@ -11,6 +11,7 @@
     "type": "commonjs",
     "devDependencies": {
         "@types/bcrypt": "^5.0.2",
+        "@types/mime-types": "^3.0.0",
         "@types/node": "^22.15.21",
         "@types/validator": "^13.15.1",
         "prettier": "^3.5.3",
@@ -20,6 +21,9 @@
         "validator": "^13.15.15"
     },
     "dependencies": {
+        "@aws-sdk/client-s3": "^3.826.0",
+        "@aws-sdk/s3-request-presigner": "^3.826.0",
+        "@fastify/cors": "^11.0.1",
         "@fastify/swagger": "^9.5.1",
         "@fastify/swagger-ui": "^5.2.2",
         "@prisma/client": "6.9.0",
@@ -28,6 +32,7 @@
         "fastify": "^5.3.3",
         "fastify-plugin": "^5.0.1",
         "fastify-type-provider-zod": "^4.0.2",
+        "mime-types": "^3.0.1",
         "swagger-themes": "^1.4.3",
         "zod": "^3.25.42"
     }
