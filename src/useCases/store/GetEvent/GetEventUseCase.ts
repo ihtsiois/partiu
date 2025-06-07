@@ -2,13 +2,11 @@ import { IEventsRepository } from '@/repositories/IEventsRepository';
 import { ICategoriesRepository } from '@/repositories/ICategoriesRepository';
 import { GetEventResponseDTO } from '@/useCases/store/GetEvent/GetEventDTO';
 import { formatAddress, gmapUrl } from '@/utils/generate';
-import { AssetsService } from '@/services/AssetsService';
 
 export class GetEventUseCase {
     constructor(
         private eventsRepo: IEventsRepository,
         private categoriesRepo: ICategoriesRepository,
-        private assetsService: AssetsService,
     ) {}
 
     async execute(slug: string): Promise<GetEventResponseDTO> {
@@ -31,14 +29,7 @@ export class GetEventUseCase {
         // Is On Sale
         const is_on_sale = event.isSalesOpen();
 
-        // Get Assets
-        const assets = {
-            banner_url: await this.assetsService.getObjectURL(event.banner_asset_id),
-            thumbnail_url: await this.assetsService.getObjectURL(event.thumbnail_asset_id),
-            opengraph_url: await this.assetsService.getObjectURL(event.opengraph_asset_id),
-        };
-
         // Return Data
-        return { ...event, category, ...assets, address, is_on_sale };
+        return { ...event, category, address, is_on_sale };
     }
 }

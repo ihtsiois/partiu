@@ -4,11 +4,9 @@ export type MimeType = (typeof uploadAvailableMimeTypes)[number];
 export type UploadProps = {
     key: string;
     contentType: MimeType;
-    contentLength?: number;
-    expiresIn?: number;
+    file: Buffer;
 };
 
 export interface IStorageProvider {
-    getObjectUrl(resource: string, signed: boolean): Promise<string>;
-    getUploadSignedUrl(props: UploadProps): Promise<{ upload_url: string; asset_url: string }>;
+    uploadFile(props: UploadProps): Promise<string>;
 }
