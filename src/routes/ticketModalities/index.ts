@@ -2,6 +2,7 @@ import { FastifyTypedInstance } from '@/types/fastify';
 import {
     createTicketModalityController,
     createTicketModalityRequestSchema,
+    getTicketModalityByIDController,
     listTicketModalitiesController,
 } from '@/useCases/ticketModality';
 import * as schema from './schema';
@@ -30,5 +31,17 @@ export default async (app: FastifyTypedInstance) => {
             },
         },
         handler: listTicketModalitiesController.handle,
+    });
+
+    app.route({
+        method: 'GET',
+        url: '/:ticket_modality_id',
+        schema: {
+            tags: ['Ticket Modalities'],
+            response: {
+                200: schema.ticketModalityResponse,
+            },
+        },
+        handler: getTicketModalityByIDController.handle,
     });
 };
