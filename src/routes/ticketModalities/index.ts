@@ -4,6 +4,8 @@ import {
     createTicketModalityRequestSchema,
     getTicketModalityByIDController,
     listTicketModalitiesController,
+    updateTicketModalityController,
+    updateTicketModalityRequestSchema,
 } from '@/useCases/ticketModality';
 import * as schema from './schema';
 
@@ -43,5 +45,18 @@ export default async (app: FastifyTypedInstance) => {
             },
         },
         handler: getTicketModalityByIDController.handle,
+    });
+
+    app.route({
+        method: 'PUT',
+        url: '/:ticket_modality_id',
+        schema: {
+            tags: ['Ticket Modalities'],
+            body: updateTicketModalityRequestSchema,
+            response: {
+                200: schema.ticketModalityResponse,
+            },
+        },
+        handler: updateTicketModalityController.handle,
     });
 };
