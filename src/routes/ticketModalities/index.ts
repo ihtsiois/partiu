@@ -1,5 +1,9 @@
 import { FastifyTypedInstance } from '@/types/fastify';
-import { createTicketModalityController, createTicketModalityRequestSchema } from '@/useCases/ticketModality';
+import {
+    createTicketModalityController,
+    createTicketModalityRequestSchema,
+    listTicketModalitiesController,
+} from '@/useCases/ticketModality';
 import * as schema from './schema';
 
 export default async (app: FastifyTypedInstance) => {
@@ -14,5 +18,17 @@ export default async (app: FastifyTypedInstance) => {
             },
         },
         handler: createTicketModalityController.handle,
+    });
+
+    app.route({
+        method: 'GET',
+        url: '/event/:event_id',
+        schema: {
+            tags: ['Ticket Modalities'],
+            response: {
+                200: schema.ticketModalityResponse.array(),
+            },
+        },
+        handler: listTicketModalitiesController.handle,
     });
 };
