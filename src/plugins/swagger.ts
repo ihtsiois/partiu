@@ -23,6 +23,7 @@ export default fp(async (app) => {
                 { name: 'Events', description: 'Event related routes' },
                 { name: 'Store', description: 'Public store related routes' },
                 { name: 'Ticket Types', description: 'Ticket Types related routes' },
+                { name: 'Ticket Modalities', description: 'Ticket Modalities related routes' },
             ],
             servers: [
                 {

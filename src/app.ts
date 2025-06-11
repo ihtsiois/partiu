@@ -26,6 +26,7 @@ export function buildApp() {
     app.register(require('@/routes/events'), { prefix: '/v1/events' });
     app.register(require('@/routes/store'), { prefix: '/v1/store' });
     app.register(require('@/routes/ticketTypes'), { prefix: '/v1/ticket-types' });
+    app.register(require('@/routes/ticketModalities'), { prefix: '/v1/ticket-modalities' });
     app.register(require('@/routes/users'), { prefix: '/v1/users' });
 
     return app;
