@@ -1,8 +1,8 @@
-import { ITicketTypeRepository } from '@/repositories/ITicketTypeRepository';
+import { ITicketTypesRepository } from '@/repositories/ITicketTypesRepository';
 import { TicketType } from '@/entities/TicketType';
 import { PrismaClient } from '@/generated/prisma';
 
-export class PrismaTicketTypeRepository implements ITicketTypeRepository {
+export class PrismaTicketTypesRepository implements ITicketTypesRepository {
     private db: PrismaClient;
 
     constructor() {

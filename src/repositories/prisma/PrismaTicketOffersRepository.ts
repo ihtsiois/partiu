@@ -1,8 +1,8 @@
 import { PrismaClient } from '@/generated/prisma';
-import { ITicketOfferRepository } from '@/repositories/ITicketOfferRepository';
+import { ITicketOffersRepository } from '@/repositories/ITicketOffersRepository';
 import { TicketOffer } from '@/entities/TicketOffer';
 
-export class PrismaTicketOfferRepository implements ITicketOfferRepository {
+export class PrismaTicketOffersRepository implements ITicketOffersRepository {
     private db: PrismaClient;
 
     constructor() {
