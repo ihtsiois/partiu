@@ -13,7 +13,7 @@ export class TicketModality {
     public name: string;
     public description: string | null;
 
-    constructor(props: TicketModalityProps, id: string) {
+    constructor(props: TicketModalityProps, id?: string) {
         this.id = id || genId('tkmd');
 
         this.event_id = props.event_id;

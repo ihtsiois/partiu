@@ -1,13 +1,22 @@
 import { CreateTicketTypeRequestDTO } from '@/useCases/ticketType/CreateTicketType/CreateTicketTypeDTO';
 import { TicketType } from '@/entities/TicketType';
 import { ITicketTypesRepository } from '@/repositories/ITicketTypesRepository';
+import { IEventsRepository } from '@/repositories/IEventsRepository';
 
 export class CreateTicketTypeUseCase {
-    constructor(private ticketTypeRepo: ITicketTypesRepository) {}
+    constructor(
+        private eventsRepo: IEventsRepository,
+        private ticketTypesRepo: ITicketTypesRepository,
+    ) {}
 
-    async execute(data: CreateTicketTypeRequestDTO) {
-        const ticketType = new TicketType(data);
-        await this.ticketTypeRepo.save(ticketType);
+    async execute(event_id: string, data: CreateTicketTypeRequestDTO) {
+        // Get Event
+        const event = await this.eventsRepo.findByID(event_id);
+        if (!event) throw new Error('Event not exists');
+
+        // Save Ticket Type
+        const ticketType = new TicketType({ ...data, event_id: event.id });
+        await this.ticketTypesRepo.save(ticketType);
         return ticketType;
     }
 }

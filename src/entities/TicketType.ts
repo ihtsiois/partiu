@@ -11,7 +11,7 @@ export class TicketType {
     public event_id: string;
     public name: string;
 
-    constructor(props: TicketTypeProps, id: string) {
+    constructor(props: TicketTypeProps, id?: string) {
         this.id = id || genId('tktp');
 
         this.event_id = props.event_id;

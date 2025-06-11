@@ -29,11 +29,6 @@ interface EventProps {
     address_city?: string | null;
     address_line?: string | null;
     gmaps_url?: string | null;
-    facebook_url?: string | null;
-    instagram_url?: string | null;
-    twitter_url?: string | null;
-    tiktok_url?: string | null;
-    site_url?: string | null;
 }
 
 export class Event {
@@ -64,11 +59,6 @@ export class Event {
     public address_city: string | null;
     public address_line: string | null;
     public gmaps_url: string | null;
-    public facebook_url: string | null;
-    public instagram_url: string | null;
-    public twitter_url: string | null;
-    public tiktok_url: string | null;
-    public site_url: string | null;
 
     constructor(props: EventProps, id?: string) {
         this.id = id || genId('evt');
@@ -98,11 +88,6 @@ export class Event {
         this.address_city = props.address_city || null;
         this.address_line = props.address_line || null;
         this.gmaps_url = props.gmaps_url || null;
-        this.facebook_url = props.facebook_url || null;
-        this.instagram_url = props.instagram_url || null;
-        this.twitter_url = props.twitter_url || null;
-        this.tiktok_url = props.tiktok_url || null;
-        this.site_url = props.site_url || null;
     }
 
     public isSalesOpen(): boolean {

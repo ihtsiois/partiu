@@ -1,4 +1,3 @@
-import { EventAgeRating } from '@/entities/Event';
 import { z } from 'zod';
 
 export const updateEventRequestSchema = z.object({
@@ -20,11 +19,6 @@ export const updateEventRequestSchema = z.object({
     address_city: z.string().nullable().optional(),
     address_line: z.string().nullable().optional(),
     gmaps_url: z.string().nullable().optional(),
-    facebook_url: z.string().url().nullable().optional(),
-    instagram_url: z.string().url().nullable().optional(),
-    twitter_url: z.string().url().nullable().optional(),
-    tiktok_url: z.string().url().nullable().optional(),
-    site_url: z.string().url().nullable().optional(),
 });
 
 export type UpdateEventRequestDTO = z.infer<typeof updateEventRequestSchema>;
