@@ -2,6 +2,7 @@ import { FastifyTypedInstance } from '@/types/fastify';
 import {
     createTicketTypeController,
     createTicketTypeRequestSchema,
+    getTicketTypeByIDController,
     listTicketTypesController,
 } from '@/useCases/ticketType';
 import * as schema from './schema';
@@ -9,7 +10,7 @@ import * as schema from './schema';
 export default async (app: FastifyTypedInstance) => {
     app.route({
         method: 'POST',
-        url: '/',
+        url: '/event/:event_id',
         schema: {
             tags: ['Ticket Types'],
             body: createTicketTypeRequestSchema,
@@ -22,7 +23,7 @@ export default async (app: FastifyTypedInstance) => {
 
     app.route({
         method: 'GET',
-        url: '/',
+        url: '/event/:event_id',
         schema: {
             tags: ['Ticket Types'],
             response: {
@@ -30,5 +31,17 @@ export default async (app: FastifyTypedInstance) => {
             },
         },
         handler: listTicketTypesController.handle,
+    });
+
+    app.route({
+        method: 'GET',
+        url: '/:ticket_type_id',
+        schema: {
+            tags: ['Ticket Types'],
+            response: {
+                200: schema.ticketTypeResponse,
+            },
+        },
+        handler: getTicketTypeByIDController.handle,
     });
 };
