@@ -127,14 +127,52 @@ model Event {
   address_line     String?
   gmaps_url        String?
 
-  facebook_url  String?
-  instagram_url String?
-  twitter_url   String?
-  tiktok_url    String?
-  site_url      String?
+  ticket_types      TicketType[]
+  ticket_modalities TicketModality[]
 
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
   @@map("events")
+}
+
+model TicketType {
+  id       String @id
+  event    Event  @relation(fields: [event_id], references: [id])
+  event_id String
+  name     String
+
+  created_at  DateTime      @default(now())
+  updated_at  DateTime      @default(now()) @updatedAt
+  TicketOffer TicketOffer[]
+
+  @@map("ticket_types")
+}
+
+model TicketModality {
+  id          String  @id
+  event       Event   @relation(fields: [event_id], references: [id])
+  event_id    String
+  name        String
+  description String?
+
+  ticket_offers TicketOffer[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  @@map("ticket_modalities")
+}
+
+model TicketOffer {
+  id             String         @id
+  ticket_type    TicketType     @relation(fields: [ticket_type_id], references: [id])
+  ticket_type_id String
+  modality       TicketModality @relation(fields: [modality_id], references: [id])
+  modality_id    String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  @@map("ticket_offers")
 }
