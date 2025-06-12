@@ -4,6 +4,8 @@ import {
     createTicketOfferRequestSchema,
     getTicketOfferByIDController,
     listTicketOffersController,
+    updateTicketOfferController,
+    updateTicketOfferRequestSchema,
 } from '@/useCases/ticketOffers';
 import * as schema from './schema';
 
@@ -43,5 +45,18 @@ export default async (app: FastifyTypedInstance) => {
             },
         },
         handler: getTicketOfferByIDController.handle,
+    });
+
+    app.route({
+        method: 'PATCH',
+        url: '/:ticket_offer_id',
+        schema: {
+            tags: ['Ticket Offers'],
+            body: updateTicketOfferRequestSchema,
+            response: {
+                200: schema.ticketOfferResponse,
+            },
+        },
+        handler: updateTicketOfferController.handle,
     });
 };

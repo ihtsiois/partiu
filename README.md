@@ -13,5 +13,5 @@ The tickets platform back-end.
     - [x] Create Ticket Offer
     - [x] List Ticket Offers
     - [x] Get Ticket Offer by ID
-    - [ ] Update Ticket Offer
+    - [x] Update Ticket Offer
     - [ ] Delete Ticket Offer
