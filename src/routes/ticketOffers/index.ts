@@ -14,7 +14,7 @@ import { deleteTicketOfferController } from '@/useCases/ticketOffers/DeleteTicke
 export default async (app: FastifyTypedInstance) => {
     app.route({
         method: 'POST',
-        url: '/event/:event_id',
+        url: '/ticket-type/:ticket_type_id',
         schema: {
             tags: ['Ticket Offers'],
             body: createTicketOfferRequestSchema,

@@ -6,23 +6,18 @@ import { TicketOffer } from '@/entities/TicketOffer';
 
 export class CreateTicketOfferUseCase {
     constructor(
-        private eventsRepo: IEventsRepository,
         private ticketTypesRepo: ITicketTypesRepository,
         private ticketOffersRepo: ITicketOffersRepository,
     ) {}
 
-    async execute(event_id: string, data: CreateTicketOfferRequestDTO) {
-        // Get Event
-        const event = await this.eventsRepo.findByID(event_id);
-        if (!event) throw new Error('Event not exists');
-
+    async execute(ticket_type_id: string, data: CreateTicketOfferRequestDTO) {
         // Get Ticket Type
-        const ticketType = await this.ticketTypesRepo.findByID(data.ticket_type_id);
-        if (!ticketType || ticketType.event_id !== event.id) throw new Error('Ticket Type not exists');
+        const ticketType = await this.ticketTypesRepo.findByID(ticket_type_id);
+        if (!ticketType) throw new Error('Ticket Type not exists');
 
         // Create Ticket Offer
         const ticketOffer = new TicketOffer({
-            ticket_type_id: data.ticket_type_id,
+            ticket_type_id: ticketType.id,
             title: data.title,
             description: data.description,
         });
