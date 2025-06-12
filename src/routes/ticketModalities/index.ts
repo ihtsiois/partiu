@@ -2,12 +2,14 @@ import { FastifyTypedInstance } from '@/types/fastify';
 import {
     createTicketModalityController,
     createTicketModalityRequestSchema,
+    deleteTicketModalityController,
     getTicketModalityByIDController,
     listTicketModalitiesController,
     updateTicketModalityController,
     updateTicketModalityRequestSchema,
 } from '@/useCases/ticketModality';
 import * as schema from './schema';
+import { z } from 'zod';
 
 export default async (app: FastifyTypedInstance) => {
     app.route({
@@ -58,5 +60,17 @@ export default async (app: FastifyTypedInstance) => {
             },
         },
         handler: updateTicketModalityController.handle,
+    });
+
+    app.route({
+        method: 'DELETE',
+        url: '/:ticket_modality_id',
+        schema: {
+            tags: ['Ticket Modalities'],
+            response: {
+                204: z.void(),
+            },
+        },
+        handler: deleteTicketModalityController.handle,
     });
 };

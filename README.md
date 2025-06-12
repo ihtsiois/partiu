@@ -12,7 +12,7 @@ The tickets platform back-end.
     - [x] List Ticket Modalities
     - [x] Get Ticket Modality by ID
     - [x] Update Ticket Modality
-    - [ ] Delete Ticket Modality
+    - [x] Delete Ticket Modality
 - [ ] CRUD Ticket Offers
     - [ ] Create Ticket Offer
     - [ ] List Ticket Offers
