@@ -8,10 +8,4 @@ The tickets platform back-end.
 
 - [x] CRUD Ticket Type
 - [x] CRUD Ticket Modalities
-- [ ] CRUD Ticket Offers
-    - [x] Routes Handler
-    - [x] Create Ticket Offer
-    - [x] List Ticket Offers
-    - [x] Get Ticket Offer by ID
-    - [x] Update Ticket Offer
-    - [ ] Delete Ticket Offer
+- [x] CRUD Ticket Offers

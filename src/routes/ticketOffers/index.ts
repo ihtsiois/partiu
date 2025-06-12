@@ -8,6 +8,8 @@ import {
     updateTicketOfferRequestSchema,
 } from '@/useCases/ticketOffers';
 import * as schema from './schema';
+import { z } from 'zod';
+import { deleteTicketOfferController } from '@/useCases/ticketOffers/DeleteTicketOffer';
 
 export default async (app: FastifyTypedInstance) => {
     app.route({
@@ -58,5 +60,17 @@ export default async (app: FastifyTypedInstance) => {
             },
         },
         handler: updateTicketOfferController.handle,
+    });
+
+    app.route({
+        method: 'DELETE',
+        url: '/:ticket_offer_id',
+        schema: {
+            tags: ['Ticket Offers'],
+            response: {
+                204: z.void(),
+            },
+        },
+        handler: deleteTicketOfferController.handle,
     });
 };
