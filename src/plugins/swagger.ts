@@ -10,6 +10,8 @@ const logo =
 export default fp(async (app) => {
     const theme = new SwaggerTheme();
 
+    const host = process.env.SRV_BASE_URL || 'http://localhost:3333'
+
     app.register(fastifySwagger, {
         openapi: {
             info: {
@@ -27,7 +29,7 @@ export default fp(async (app) => {
             ],
             servers: [
                 {
-                    url: 'http://localhost:3333',
+                    url: host,
                     description: 'Development Server',
                 },
             ],
