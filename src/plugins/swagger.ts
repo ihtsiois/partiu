@@ -10,7 +10,7 @@ const logo =
 export default fp(async (app) => {
     const theme = new SwaggerTheme();
 
-    const host = process.env.SRV_BASE_URL || 'http://localhost:3333'
+    const host = process.env.SRV_BASE_URL || 'http://localhost:3333';
 
     app.register(fastifySwagger, {
         openapi: {
@@ -25,8 +25,7 @@ export default fp(async (app) => {
                 { name: 'Events', description: 'Event related routes' },
                 { name: 'Store', description: 'Public store related routes' },
                 { name: 'Ticket Types', description: 'Ticket Types related routes' },
-                { name: 'Ticket Modalities', description: 'Ticket Modalities related routes' },
-                { name: 'Ticket Offers', description: 'Ticket Offers related routes' }
+                { name: 'Ticket Offers', description: 'Ticket Offers related routes' },
             ],
             servers: [
                 {
