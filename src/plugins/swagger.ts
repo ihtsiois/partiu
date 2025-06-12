@@ -26,6 +26,7 @@ export default fp(async (app) => {
                 { name: 'Store', description: 'Public store related routes' },
                 { name: 'Ticket Types', description: 'Ticket Types related routes' },
                 { name: 'Ticket Modalities', description: 'Ticket Modalities related routes' },
+                { name: 'Ticket Offers', description: 'Ticket Offers related routes' }
             ],
             servers: [
                 {
