@@ -54,7 +54,7 @@ export default async (app: FastifyTypedInstance) => {
     });
 
     app.route({
-        method: 'PUT',
+        method: 'PATCH',
         url: '/:user_id',
         schema: {
             tags: ['Users'],

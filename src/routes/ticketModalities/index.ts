@@ -50,7 +50,7 @@ export default async (app: FastifyTypedInstance) => {
     });
 
     app.route({
-        method: 'PUT',
+        method: 'PATCH',
         url: '/:ticket_modality_id',
         schema: {
             tags: ['Ticket Modalities'],

@@ -53,7 +53,7 @@ export default async (app: FastifyTypedInstance) => {
     });
 
     app.route({
-        method: 'PUT',
+        method: 'PATCH',
         url: '/:event_id',
         schema: {
             tags: ['Events'],
