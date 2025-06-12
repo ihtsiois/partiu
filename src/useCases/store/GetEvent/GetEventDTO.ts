@@ -23,11 +23,6 @@ export const getEventResponseSchema = z.object({
     end_date: z.date(),
     address: z.string().nullable(),
     gmaps_url: z.string().nullable(),
-    facebook_url: z.string().nullable(),
-    instagram_url: z.string().nullable(),
-    twitter_url: z.string().nullable(),
-    tiktok_url: z.string().nullable(),
-    site_url: z.string().nullable(),
 });
 
 export type GetEventResponseDTO = z.infer<typeof getEventResponseSchema>;
