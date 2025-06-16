@@ -2,6 +2,7 @@ import { IEventsRepository } from '@/repositories/IEventsRepository';
 import { ICategoriesRepository } from '@/repositories/ICategoriesRepository';
 import { GetEventResponseDTO } from '@/useCases/store/GetEvent/GetEventDTO';
 import { formatAddress, gmapUrl } from '@/utils/generate';
+import { AppError } from '@/plugins/errorHandler';
 
 export class GetEventUseCase {
     constructor(
@@ -12,7 +13,7 @@ export class GetEventUseCase {
     async execute(slug: string): Promise<GetEventResponseDTO> {
         // Get Event
         const event = await this.eventsRepo.findBySlug(slug);
-        if (!event) throw new Error('Event not exists');
+        if (!event) throw new AppError('event_not_exists', 404);
         console.log(event);
         console.log(typeof event);
 

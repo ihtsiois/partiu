@@ -13,12 +13,8 @@ export function buildApp() {
         origin: ['*'],
     });
 
-    app.setErrorHandler((err) => {
-        console.log(err);
-        return err;
-    });
-
     // Register Plugins
+    app.register(require('@/plugins/errorHandler'));
     app.register(require('@/plugins/swagger'));
 
     // Register Routes

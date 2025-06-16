@@ -1,4 +1,5 @@
 import { Event } from '@/entities/Event';
+import { AppError } from '@/plugins/errorHandler';
 import { IEventsRepository } from '@/repositories/IEventsRepository';
 import { UpdateEventRequestDTO } from '@/useCases/events';
 
@@ -8,17 +9,15 @@ export class UpdateEventUseCase {
     async execute(id: string, data: UpdateEventRequestDTO): Promise<Event> {
         // Get Event
         const event = await this.eventsRepo.findByID(id);
-        if (!event) throw new Error('Event not exists');
+        if (!event) throw new AppError('event_not_exists', 404);
         const newEvent = new Event({ ...event, ...data }, event.id);
 
         // Validate Start Date
-        if (newEvent.start_date >= newEvent.end_date) throw new Error('The event must start before the end date.');
+        if (newEvent.start_date >= newEvent.end_date) throw new AppError('event_invalid_dates', 400);
 
         // Validate Sales Start & End Date
-        if (newEvent.sales_starts_at >= newEvent.sales_ends_at)
-            throw new Error('The event sales must start before the sales end date.');
-        if (newEvent.sales_ends_at > newEvent.end_date)
-            throw new Error('The event sales must end before the end date.');
+        if (newEvent.sales_starts_at >= newEvent.sales_ends_at) throw new AppError('event_invalid_dates', 400);
+        if (newEvent.sales_ends_at > newEvent.end_date) throw new AppError('event_invalid_dates', 400);
 
         // Update Event
         await this.eventsRepo.save(newEvent);

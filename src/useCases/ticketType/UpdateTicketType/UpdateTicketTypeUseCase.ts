@@ -1,6 +1,7 @@
 import { ITicketTypesRepository } from '@/repositories/ITicketTypesRepository';
 import { UpdateTicketTypeRequestDTO } from './UpdateTicketTypeDTO';
 import { TicketType } from '@/entities/TicketType';
+import { AppError } from '@/plugins/errorHandler';
 
 export class UpdateTicketTypeUseCase {
     constructor(private ticketTypesRepo: ITicketTypesRepository) {}
@@ -8,7 +9,7 @@ export class UpdateTicketTypeUseCase {
     async execute(id: string, data: UpdateTicketTypeRequestDTO) {
         // Get Ticket Type
         const ticketType = await this.ticketTypesRepo.findByID(id);
-        if (!ticketType) throw new Error('Ticket Type not exists');
+        if (!ticketType) throw new AppError('ticket_type_not_exists', 404);
 
         // Update Ticket Type
         const newTicketType = new TicketType({ ...ticketType, ...data }, ticketType.id);

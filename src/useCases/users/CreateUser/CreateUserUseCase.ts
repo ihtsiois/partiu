@@ -1,8 +1,8 @@
 import { IUsersRepository } from '@/repositories/IUsersRepository';
 import { User } from '@/entities/User';
 import { CreateUserRequestDTO } from '@/useCases/users';
-import { isValidCPF } from '@/utils/validate';
 import { hashSync } from 'bcrypt';
+import { AppError } from '@/plugins/errorHandler';
 
 export class CreateUserUseCase {
     constructor(private usersRepo: IUsersRepository) {}
@@ -10,7 +10,7 @@ export class CreateUserUseCase {
     async execute(data: CreateUserRequestDTO): Promise<User> {
         // Validate Email
         const emailExists = await this.usersRepo.findByEmail(data.email);
-        if (emailExists) throw new Error('User Already Exists');
+        if (emailExists) throw new AppError('email_in_use', 409);
 
         // Generate Password Hash
         const password_hash = hashSync(data.password, 12);

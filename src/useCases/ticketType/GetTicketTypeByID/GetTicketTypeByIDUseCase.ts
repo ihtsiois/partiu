@@ -1,3 +1,4 @@
+import { AppError } from '@/plugins/errorHandler';
 import { ITicketTypesRepository } from '@/repositories/ITicketTypesRepository';
 
 export class GetTicketTypeByIDUseCase {
@@ -6,7 +7,7 @@ export class GetTicketTypeByIDUseCase {
     async execute(id: string) {
         // Get Ticket Type
         const ticketType = await this.ticketTypesRepo.findByID(id);
-        if (!ticketType) throw new Error('Ticket Type not exists');
+        if (!ticketType) throw new AppError('ticket_type_not_found', 404);
 
         return ticketType;
     }

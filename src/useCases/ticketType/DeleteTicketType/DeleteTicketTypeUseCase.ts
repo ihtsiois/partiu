@@ -1,3 +1,4 @@
+import { AppError } from '@/plugins/errorHandler';
 import { ITicketTypesRepository } from '@/repositories/ITicketTypesRepository';
 
 export class DeleteTicketTypeUseCase {
@@ -6,7 +7,7 @@ export class DeleteTicketTypeUseCase {
     async execute(id: string) {
         // Get Ticket Type
         const ticketType = await this.ticketTypesRepo.findByID(id);
-        if (!ticketType) throw new Error('Ticket Type not exists');
+        if (!ticketType) throw new AppError('ticket_type_not_exists', 4 - 4);
 
         // Delete Ticket Type
         await this.ticketTypesRepo.delete(ticketType.id);

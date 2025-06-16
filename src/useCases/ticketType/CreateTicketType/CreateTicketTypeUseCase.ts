@@ -2,6 +2,7 @@ import { CreateTicketTypeRequestDTO } from '@/useCases/ticketType/CreateTicketTy
 import { TicketType } from '@/entities/TicketType';
 import { ITicketTypesRepository } from '@/repositories/ITicketTypesRepository';
 import { IEventsRepository } from '@/repositories/IEventsRepository';
+import { AppError } from '@/plugins/errorHandler';
 
 export class CreateTicketTypeUseCase {
     constructor(
@@ -12,7 +13,7 @@ export class CreateTicketTypeUseCase {
     async execute(event_id: string, data: CreateTicketTypeRequestDTO) {
         // Get Event
         const event = await this.eventsRepo.findByID(event_id);
-        if (!event) throw new Error('Event not exists');
+        if (!event) throw new AppError('event_not_exists', 404);
 
         // Save Ticket Type
         const ticketType = new TicketType({ ...data, event_id: event.id });
