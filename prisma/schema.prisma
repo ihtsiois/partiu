@@ -45,8 +45,9 @@ model User {
   customers Customer[]
   events    Event[]
 
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now()) @updatedAt
+  created_at   DateTime       @default(now())
+  updated_at   DateTime       @default(now()) @updatedAt
+  RefreshToken RefreshToken[]
 
   @@map("users")
 }
@@ -72,6 +73,19 @@ model Customer {
   @@unique([document_type, document])
   @@index([email])
   @@map("customers")
+}
+
+model RefreshToken {
+  id         String @id
+  user       User   @relation(fields: [user_id], references: [id])
+  user_id    String
+  token_hash String @unique
+
+  user_agent String?
+  ip_address String?
+
+  created_at DateTime @default(now())
+  expires_at DateTime
 }
 
 model Category {
