@@ -86,6 +86,8 @@ model RefreshToken {
 
   created_at DateTime @default(now())
   expires_at DateTime
+
+  @@map("refresh_tokens")
 }
 
 model Category {

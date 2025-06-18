@@ -20,6 +20,7 @@ export default fp(async (app) => {
                 version: '1.0.0',
             },
             tags: [
+                { name: 'Auth', description: 'Auth related routes' },
                 { name: 'Users', description: 'User related routes' },
                 { name: 'Categories', description: 'Category related routes' },
                 { name: 'Events', description: 'Event related routes' },

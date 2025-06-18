@@ -18,6 +18,7 @@ export function buildApp() {
     app.register(require('@/plugins/swagger'));
 
     // Register Routes
+    app.register(require('@/routes/auth'), { prefix: '/v1/auth' });
     app.register(require('@/routes/categories'), { prefix: '/v1/categories' });
     app.register(require('@/routes/events'), { prefix: '/v1/events' });
     app.register(require('@/routes/store'), { prefix: '/v1/store' });
