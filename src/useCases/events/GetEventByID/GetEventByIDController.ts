@@ -6,7 +6,7 @@ export class GetEventByIDController {
 
     handle = async (req: FastifyRequest<{ Params: { event_id: string } }>, res: FastifyReply): Promise<void> => {
         const { event_id: id } = req.params;
-        const event = await this.getEventByIDUseCase.execute(id);
+        const event = await this.getEventByIDUseCase.execute(id, req.user);
         return res.status(200).send(event);
     };
 }

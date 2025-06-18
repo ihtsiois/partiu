@@ -1,4 +1,5 @@
 import { Event } from '@/entities/Event';
+import { User } from '@/entities/User';
 import { AppError } from '@/plugins/errorHandler';
 import { IEventsRepository } from '@/repositories/IEventsRepository';
 import { UpdateEventRequestDTO } from '@/useCases/events';
@@ -6,10 +7,14 @@ import { UpdateEventRequestDTO } from '@/useCases/events';
 export class UpdateEventUseCase {
     constructor(private eventsRepo: IEventsRepository) {}
 
-    async execute(id: string, data: UpdateEventRequestDTO): Promise<Event> {
+    async execute(id: string, data: UpdateEventRequestDTO, user: User): Promise<Event> {
         // Get Event
         const event = await this.eventsRepo.findById(id);
         if (!event) throw new AppError('event_not_exists', 404);
+        // Validate Event Ownership
+        if (event.owner_id !== user.id) throw new AppError('event_not_exists', 404);
+
+        // Create New Event Entitie
         const newEvent = new Event({ ...event, ...data }, event.id);
 
         // Validate Start Date

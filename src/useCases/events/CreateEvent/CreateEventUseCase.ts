@@ -2,11 +2,12 @@ import { IEventsRepository } from '@/repositories/IEventsRepository';
 import { Event } from '@/entities/Event';
 import { CreateEventRequestDTO } from '@/useCases/events';
 import { AppError } from '@/plugins/errorHandler';
+import { User } from '@/entities/User';
 
 export class CreateEventUseCase {
     constructor(private eventsRepo: IEventsRepository) {}
 
-    async execute(data: CreateEventRequestDTO): Promise<Event> {
+    async execute(data: CreateEventRequestDTO, user: User): Promise<Event> {
         const { start_date, end_date, sales_starts_at, sales_ends_at } = data;
 
         // Validate Start Date
@@ -17,7 +18,7 @@ export class CreateEventUseCase {
         if (sales_ends_at > end_date) throw new AppError('event_invalid_dates', 400);
 
         // Create Event
-        const event = new Event({ ...data, owner_id: 'root' });
+        const event = new Event({ ...data, owner_id: user.id });
         await this.eventsRepo.save(event);
         return event;
     }

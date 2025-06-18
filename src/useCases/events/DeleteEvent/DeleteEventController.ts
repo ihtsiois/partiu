@@ -6,7 +6,7 @@ export class DeleteEventController {
 
     handle = async (req: FastifyRequest<{ Params: { event_id: string } }>, res: FastifyReply): Promise<void> => {
         const { event_id: id } = req.params;
-        await this.deleteEventUseCase.execute(id);
+        await this.deleteEventUseCase.execute(id, req.user);
         return res.status(204).send();
     };
 }
