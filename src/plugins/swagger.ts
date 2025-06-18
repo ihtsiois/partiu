@@ -34,6 +34,15 @@ export default fp(async (app) => {
                     description: 'Development Server',
                 },
             ],
+            components: {
+                securitySchemes: {
+                    bearerAuth: {
+                        type: 'apiKey',
+                        name: 'token',
+                        in: 'header',
+                    },
+                },
+            },
         },
         transform: jsonSchemaTransform,
     });

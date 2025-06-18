@@ -13,7 +13,7 @@ export class CreateTicketOfferUseCase {
 
     async execute(ticket_type_id: string, data: CreateTicketOfferRequestDTO) {
         // Get Ticket Type
-        const ticketType = await this.ticketTypesRepo.findByID(ticket_type_id);
+        const ticketType = await this.ticketTypesRepo.findById(ticket_type_id);
         if (!ticketType) throw new AppError('ticket_type_not_exists', 404);
 
         // Create Ticket Offer

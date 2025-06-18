@@ -23,6 +23,7 @@ export default async (app: FastifyTypedInstance) => {
                 201: schema.eventResponse,
             },
         },
+        preHandler: [app.authenticated],
         handler: createEventController.handle,
     });
 
@@ -36,6 +37,7 @@ export default async (app: FastifyTypedInstance) => {
                 200: schema.eventResponse.array(),
             },
         },
+        preHandler: [app.authenticated],
         handler: listEventsController.handle,
     });
 
@@ -49,6 +51,7 @@ export default async (app: FastifyTypedInstance) => {
                 200: schema.eventResponse,
             },
         },
+        preHandler: [app.authenticated],
         handler: getEventByIDController.handle,
     });
 
@@ -63,6 +66,7 @@ export default async (app: FastifyTypedInstance) => {
                 200: schema.eventResponse,
             },
         },
+        preHandler: [app.authenticated],
         handler: updateEventController.handle,
     });
 
@@ -77,6 +81,7 @@ export default async (app: FastifyTypedInstance) => {
                 204: z.void(),
             },
         },
+        preHandler: [app.authenticated],
         handler: deleteEventController.handle,
     });
 };

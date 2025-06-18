@@ -22,6 +22,7 @@ export default async (app: FastifyTypedInstance) => {
                 201: schema.ticketOfferResponse,
             },
         },
+        preHandler: [app.authenticated],
         handler: createTicketOfferController.handle,
     });
 
@@ -34,6 +35,7 @@ export default async (app: FastifyTypedInstance) => {
                 200: schema.ticketOfferResponse.array(),
             },
         },
+        preHandler: [app.authenticated],
         handler: listTicketOffersController.handle,
     });
 
@@ -46,6 +48,7 @@ export default async (app: FastifyTypedInstance) => {
                 200: schema.ticketOfferResponse,
             },
         },
+        preHandler: [app.authenticated],
         handler: getTicketOfferByIDController.handle,
     });
 
@@ -59,6 +62,7 @@ export default async (app: FastifyTypedInstance) => {
                 200: schema.ticketOfferResponse,
             },
         },
+        preHandler: [app.authenticated],
         handler: updateTicketOfferController.handle,
     });
 
@@ -71,6 +75,7 @@ export default async (app: FastifyTypedInstance) => {
                 204: z.void(),
             },
         },
+        preHandler: [app.authenticated],
         handler: deleteTicketOfferController.handle,
     });
 };

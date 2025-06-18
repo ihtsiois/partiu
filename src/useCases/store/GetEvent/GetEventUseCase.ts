@@ -18,7 +18,7 @@ export class GetEventUseCase {
         console.log(typeof event);
 
         // Get Category
-        const category = event.category_id ? await this.categoriesRepo.findByID(event.category_id) : null;
+        const category = event.category_id ? await this.categoriesRepo.findById(event.category_id) : null;
 
         // Update Service fee
         event.service_fee = event.absorve_fee ? 0 : event.service_fee;

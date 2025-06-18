@@ -24,6 +24,7 @@ export default async (app: FastifyTypedInstance) => {
                 201: schema.userResponse,
             },
         },
+        preHandler: [app.authenticated],
         handler: createUserController.handle,
     });
 
@@ -37,6 +38,7 @@ export default async (app: FastifyTypedInstance) => {
                 200: schema.userResponse.array(),
             },
         },
+        preHandler: [app.authenticated],
         handler: listUsersController.handle,
     });
 
@@ -50,6 +52,7 @@ export default async (app: FastifyTypedInstance) => {
                 200: findUserByIDResponseSchema,
             },
         },
+        preHandler: [app.authenticated],
         handler: findUserByIDController.handle,
     });
 
@@ -64,6 +67,7 @@ export default async (app: FastifyTypedInstance) => {
                 200: schema.userResponse,
             },
         },
+        preHandler: [app.authenticated],
         handler: updateUserController.handle,
     });
 
@@ -77,6 +81,7 @@ export default async (app: FastifyTypedInstance) => {
                 204: z.void(),
             },
         },
+        preHandler: [app.authenticated],
         handler: deleteUserController.handle,
     });
 };

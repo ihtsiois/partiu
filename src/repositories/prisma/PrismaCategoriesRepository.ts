@@ -14,7 +14,7 @@ export class PrismaCategoriesRepository implements ICategoriesRepository {
         return categories.map((c) => new Category(c, c.id));
     }
 
-    async findByID(id: string): Promise<Category | null> {
+    async findById(id: string): Promise<Category | null> {
         const category = await this.db.category.findUnique({ where: { id } });
         if (!category) return null;
         else return new Category(category, category.id);

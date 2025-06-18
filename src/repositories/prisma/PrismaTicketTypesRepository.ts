@@ -14,7 +14,7 @@ export class PrismaTicketTypesRepository implements ITicketTypesRepository {
         return ticketTypes.map((t) => new TicketType(t, t.id));
     }
 
-    async findByID(id: string): Promise<TicketType | null> {
+    async findById(id: string): Promise<TicketType | null> {
         const ticketType = await this.db.ticketType.findUnique({ where: { id } });
         if (!ticketType) return null;
         else return new TicketType(ticketType, ticketType.id);

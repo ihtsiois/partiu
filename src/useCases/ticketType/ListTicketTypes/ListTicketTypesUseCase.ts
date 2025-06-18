@@ -10,7 +10,7 @@ export class ListTicketTypesUseCase {
 
     async execute(event_id: string) {
         // Get Event
-        const event = await this.eventsRepo.findByID(event_id);
+        const event = await this.eventsRepo.findById(event_id);
         if (!event) throw new AppError('event_not_exists', 404);
 
         // Get Ticket Types

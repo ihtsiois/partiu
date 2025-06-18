@@ -14,7 +14,7 @@ export class PrismaEventsRepository implements IEventsRepository {
         return events.map((e) => new Event(e, e.id));
     }
 
-    async findByID(id: string): Promise<Event | null> {
+    async findById(id: string): Promise<Event | null> {
         const event = await this.db.event.findUnique({ where: { id } });
         if (!event) return null;
         else return new Event(event, event.id);

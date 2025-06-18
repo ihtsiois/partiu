@@ -8,7 +8,7 @@ export class UpdateTicketOfferUseCase {
 
     async handle(id: string, data: UpdateTicketOfferRequestDTO) {
         // Get Ticket Offer
-        const ticketOffer = await this.ticketOffersRepo.findByID(id);
+        const ticketOffer = await this.ticketOffersRepo.findById(id);
         if (!ticketOffer) throw new AppError('ticket_offer_not_exists', 404);
 
         // Update Ticket Offer

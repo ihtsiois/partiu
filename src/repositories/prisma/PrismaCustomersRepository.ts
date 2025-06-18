@@ -14,7 +14,7 @@ export class PrismaCustomersRepository implements ICustomersRepository {
         return customers.map((c) => new Customer(c, c.id));
     }
 
-    async findByID(id: string): Promise<Customer | null> {
+    async findById(id: string): Promise<Customer | null> {
         const customer = await this.db.customer.findUnique({ where: { id } });
         if (!customer) return null;
         else return new Customer(customer, customer.id);

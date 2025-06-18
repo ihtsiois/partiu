@@ -6,7 +6,7 @@ export class GetTicketOfferByIDUseCase {
 
     async execute(ticket_offer_id: string) {
         // Get Ticket Offer
-        const ticketOffer = this.ticketOffersRepo.findByID(ticket_offer_id);
+        const ticketOffer = this.ticketOffersRepo.findById(ticket_offer_id);
         if (!ticketOffer) throw new AppError('ticket_offer_not_exists', 404);
 
         return ticketOffer;

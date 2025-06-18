@@ -8,7 +8,7 @@ export class UpdateTicketTypeUseCase {
 
     async execute(id: string, data: UpdateTicketTypeRequestDTO) {
         // Get Ticket Type
-        const ticketType = await this.ticketTypesRepo.findByID(id);
+        const ticketType = await this.ticketTypesRepo.findById(id);
         if (!ticketType) throw new AppError('ticket_type_not_exists', 404);
 
         // Update Ticket Type

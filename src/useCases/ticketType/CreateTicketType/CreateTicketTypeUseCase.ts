@@ -12,7 +12,7 @@ export class CreateTicketTypeUseCase {
 
     async execute(event_id: string, data: CreateTicketTypeRequestDTO) {
         // Get Event
-        const event = await this.eventsRepo.findByID(event_id);
+        const event = await this.eventsRepo.findById(event_id);
         if (!event) throw new AppError('event_not_exists', 404);
 
         // Save Ticket Type

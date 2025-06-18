@@ -14,6 +14,7 @@ export function buildApp() {
     });
 
     // Register Plugins
+    app.register(require('@/plugins/auth'));
     app.register(require('@/plugins/errorHandler'));
     app.register(require('@/plugins/swagger'));
 

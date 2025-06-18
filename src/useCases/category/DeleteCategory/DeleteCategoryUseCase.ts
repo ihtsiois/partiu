@@ -6,7 +6,7 @@ export class DeleteCategoryUseCase {
 
     async execute(id: string): Promise<void> {
         // Get Category
-        const category = await this.categoriesRepo.findByID(id);
+        const category = await this.categoriesRepo.findById(id);
         if (!category) throw new AppError('category_not_found', 404);
 
         // Delete Category

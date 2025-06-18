@@ -6,7 +6,7 @@ export class DeleteEventUseCase {
 
     async execute(id: string): Promise<void> {
         // Get Event
-        const event = await this.eventsRepo.findByID(id);
+        const event = await this.eventsRepo.findById(id);
         if (!event) throw new AppError('event_not_exists', 404);
 
         // Delete Event

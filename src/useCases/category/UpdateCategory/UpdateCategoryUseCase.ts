@@ -8,7 +8,7 @@ export class UpdateCategoryUseCase {
 
     async execute(id: string, data: UpdateCategoryRequestDTO): Promise<Category> {
         // Get Category
-        const category = await this.categoriesRepo.findByID(id);
+        const category = await this.categoriesRepo.findById(id);
         if (!category) throw new AppError('category_not_found', 404);
 
         // Validate Slug

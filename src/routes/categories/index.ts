@@ -23,6 +23,7 @@ export default async (app: FastifyTypedInstance) => {
                 201: schema.categoryResponse,
             },
         },
+        preHandler: [app.authenticated],
         handler: createCategoryController.handle,
     });
 
@@ -36,6 +37,7 @@ export default async (app: FastifyTypedInstance) => {
                 200: schema.categoryResponse.array(),
             },
         },
+        preHandler: [app.authenticated],
         handler: listCategoriesController.handle,
     });
 
@@ -49,6 +51,7 @@ export default async (app: FastifyTypedInstance) => {
                 200: schema.categoryResponse,
             },
         },
+        preHandler: [app.authenticated],
         handler: findCategoryByIDController.handle,
     });
 
@@ -63,6 +66,7 @@ export default async (app: FastifyTypedInstance) => {
                 200: schema.categoryResponse,
             },
         },
+        preHandler: [app.authenticated],
         handler: updateCategoryController.handle,
     });
 
@@ -76,6 +80,7 @@ export default async (app: FastifyTypedInstance) => {
                 204: z.void(),
             },
         },
+        preHandler: [app.authenticated],
         handler: deleteCategoryController.handle,
     });
 };

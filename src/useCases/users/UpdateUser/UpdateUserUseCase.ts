@@ -9,7 +9,7 @@ export class UpdateUserUseCase {
 
     async execute(id: string, data: UpdateUserRequestDTO): Promise<User> {
         // Get User
-        const user = await this.usersRepo.findByID(id);
+        const user = await this.usersRepo.findById(id);
         if (!user) throw new AppError('user_not_exists', 404);
         const newUser = new User({ ...user, ...data }, user.id);
 

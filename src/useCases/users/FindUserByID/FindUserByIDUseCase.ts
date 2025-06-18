@@ -12,7 +12,7 @@ export class FindUserByIDUseCase {
 
     async execute(id: string): Promise<FindUserByIDDTO> {
         // Get User
-        const user = await this.usersRepo.findByID(id);
+        const user = await this.usersRepo.findById(id);
         if (!user) throw new AppError('user_not_exists', 404);
 
         // Get Customer

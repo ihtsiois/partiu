@@ -6,7 +6,7 @@ export class DeleteTicketOfferUseCase {
 
     async execute(id: string) {
         // Get Ticket Offer
-        const ticketOffer = await this.ticketOffersRepo.findByID(id);
+        const ticketOffer = await this.ticketOffersRepo.findById(id);
         if (!ticketOffer) throw new AppError('ticket_offer_not_exists', 404);
 
         // Delete Ticket Offer

@@ -6,7 +6,7 @@ export class DeleteTicketTypeUseCase {
 
     async execute(id: string) {
         // Get Ticket Type
-        const ticketType = await this.ticketTypesRepo.findByID(id);
+        const ticketType = await this.ticketTypesRepo.findById(id);
         if (!ticketType) throw new AppError('ticket_type_not_exists', 4 - 4);
 
         // Delete Ticket Type
