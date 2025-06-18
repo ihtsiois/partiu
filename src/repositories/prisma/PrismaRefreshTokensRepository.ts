@@ -1,6 +1,7 @@
 import { RefreshToken } from '@/entities/RefreshToken';
 import { IRefreshTokensRepository } from '../IRefreshTokensRepository';
 import { PrismaClient } from '@/generated/prisma';
+import { createHash } from 'crypto';
 
 export class PrismaRefreshTokensRepository implements IRefreshTokensRepository {
     private db: PrismaClient;
@@ -22,7 +23,8 @@ export class PrismaRefreshTokensRepository implements IRefreshTokensRepository {
         else return new RefreshToken(refreshToken, refreshToken.id);
     }
 
-    async getByHash(token_hash: string): Promise<RefreshToken | null> {
+    async getByToken(token: string): Promise<RefreshToken | null> {
+        const token_hash = createHash('sha256').update(token).digest('hex');
         const refreshToken = await this.db.refreshToken.findUnique({ where: { token_hash } });
         if (!refreshToken) return null;
         else return new RefreshToken(refreshToken, refreshToken.id);

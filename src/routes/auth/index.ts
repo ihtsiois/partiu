@@ -1,5 +1,12 @@
 import { FastifyTypedInstance } from '@/types/fastify';
-import { signinController, signinRequestSchema, signinResponseSchema } from '@/useCases/auth';
+import {
+    refreshController,
+    refreshRequestSchema,
+    refreshResponseSchema,
+    signinController,
+    signinRequestSchema,
+    signinResponseSchema,
+} from '@/useCases/auth';
 
 export default async (app: FastifyTypedInstance) => {
     app.route({
@@ -13,5 +20,18 @@ export default async (app: FastifyTypedInstance) => {
             },
         },
         handler: signinController.handle,
+    });
+
+    app.route({
+        method: 'POST',
+        url: '/refresh',
+        schema: {
+            tags: ['Auth'],
+            body: refreshRequestSchema,
+            response: {
+                200: refreshResponseSchema,
+            },
+        },
+        handler: refreshController.handle,
     });
 };

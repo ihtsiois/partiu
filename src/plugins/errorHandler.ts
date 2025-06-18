@@ -31,8 +31,8 @@ export default fp((app: FastifyTypedInstance) => {
             });
         }
 
-        req.log.error(err);
-        return res.status(500).send({ error: err });
+        console.error(err);
+        return res.status(500).send({ error: 'internal_server_error' });
     };
 
     const notFoundHandler = (req: FastifyRequest, res: FastifyReply) => res.status(404).send({ error: 'NotFound' });
