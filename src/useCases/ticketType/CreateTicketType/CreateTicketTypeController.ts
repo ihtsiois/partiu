@@ -9,7 +9,7 @@ export class CreateTicketTypeController {
         req: FastifyRequest<{ Params: { event_id: string }; Body: CreateTicketTypeRequestDTO }>,
         res: FastifyReply,
     ) => {
-        const ticketType = await this.createTicketTypeUseCase.execute(req.params.event_id, req.body);
+        const ticketType = await this.createTicketTypeUseCase.execute(req.params.event_id, req.body, req.user);
         return res.status(201).send(ticketType);
     };
 }

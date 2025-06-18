@@ -9,7 +9,11 @@ export class UpdateTicketOfferController {
         req: FastifyRequest<{ Params: { ticket_offer_id: string }; Body: UpdateTicketOfferRequestDTO }>,
         res: FastifyReply,
     ) => {
-        const newTicketOffer = await this.updateTicketOfferUseCase.handle(req.params.ticket_offer_id, req.body);
+        const newTicketOffer = await this.updateTicketOfferUseCase.handle(
+            req.params.ticket_offer_id,
+            req.body,
+            req.user,
+        );
         return res.status(200).send(newTicketOffer);
     };
 }

@@ -5,7 +5,7 @@ export class DeleteTicketTypeController {
     constructor(private deleteTicketTypeUseCase: DeleteTicketTypeUseCase) {}
 
     handle = async (req: FastifyRequest<{ Params: { ticket_type_id: string } }>, res: FastifyReply) => {
-        await this.deleteTicketTypeUseCase.execute(req.params.ticket_type_id);
+        await this.deleteTicketTypeUseCase.execute(req.params.ticket_type_id, req.user);
         return res.status(204).send();
     };
 }

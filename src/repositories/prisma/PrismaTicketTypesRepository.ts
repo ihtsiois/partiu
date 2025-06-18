@@ -1,6 +1,7 @@
 import { ITicketTypesRepository } from '@/repositories/ITicketTypesRepository';
 import { TicketType } from '@/entities/TicketType';
 import { PrismaClient } from '@/generated/prisma';
+import { User } from '@/entities/User';
 
 export class PrismaTicketTypesRepository implements ITicketTypesRepository {
     private db: PrismaClient;
@@ -32,5 +33,22 @@ export class PrismaTicketTypesRepository implements ITicketTypesRepository {
     async delete(id: string): Promise<void> {
         await this.db.ticketType.delete({ where: { id } });
         return;
+    }
+
+    async getOwnership(id: string): Promise<User | null> {
+        const ticketType = await this.db.ticketType.findUnique({
+            where: { id },
+            include: {
+                event: {
+                    select: { owner: true },
+                },
+            },
+        });
+
+        if (!ticketType) return null;
+        else {
+            const user = ticketType.event.owner;
+            return new User(user, user.id);
+        }
     }
 }
