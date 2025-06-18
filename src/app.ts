@@ -16,7 +16,11 @@ export function buildApp() {
     // Register Plugins
     app.register(require('@/plugins/auth'));
     app.register(require('@/plugins/errorHandler'));
-    app.register(require('@/plugins/swagger'));
+
+    // Add Documentation
+    if (process.env.NODE_ENV == 'development') {
+        app.register(require('@/plugins/swagger'));
+    }
 
     // Register Routes
     app.register(require('@/routes/auth'), { prefix: '/v1/auth' });

@@ -37,9 +37,9 @@ export default fp(async (app) => {
             components: {
                 securitySchemes: {
                     bearerAuth: {
-                        type: 'apiKey',
-                        name: 'token',
-                        in: 'header',
+                        type: 'http',
+                        scheme: 'bearer',
+                        bearerFormat: 'JWT',
                     },
                 },
             },

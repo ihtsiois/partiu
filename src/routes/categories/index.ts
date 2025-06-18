@@ -19,6 +19,7 @@ export default async (app: FastifyTypedInstance) => {
             tags: ['Categories'],
             description: 'Register category',
             body: createCategoryRequestSchema,
+            security: [{ bearerAuth: [] }],
             response: {
                 201: schema.categoryResponse,
             },
@@ -33,6 +34,7 @@ export default async (app: FastifyTypedInstance) => {
         schema: {
             tags: ['Categories'],
             description: 'List categories',
+            security: [{ bearerAuth: [] }],
             response: {
                 200: schema.categoryResponse.array(),
             },
@@ -47,6 +49,7 @@ export default async (app: FastifyTypedInstance) => {
         schema: {
             tags: ['Categories'],
             description: 'Get category by ID',
+            security: [{ bearerAuth: [] }],
             response: {
                 200: schema.categoryResponse,
             },
@@ -62,6 +65,7 @@ export default async (app: FastifyTypedInstance) => {
             tags: ['Categories'],
             description: 'Update category by ID',
             body: updateCategoryRequestSchema,
+            security: [{ bearerAuth: [] }],
             response: {
                 200: schema.categoryResponse,
             },
@@ -76,6 +80,7 @@ export default async (app: FastifyTypedInstance) => {
         schema: {
             tags: ['Categories'],
             description: 'Delete category by ID',
+            security: [{ bearerAuth: [] }],
             response: {
                 204: z.void(),
             },

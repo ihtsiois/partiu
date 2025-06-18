@@ -20,6 +20,7 @@ export default async (app: FastifyTypedInstance) => {
             tags: ['Users'],
             description: 'Register new user',
             body: createUserRequestSchema,
+            security: [{ bearerAuth: [] }],
             response: {
                 201: schema.userResponse,
             },
@@ -34,6 +35,7 @@ export default async (app: FastifyTypedInstance) => {
         schema: {
             tags: ['Users'],
             description: 'List users',
+            security: [{ bearerAuth: [] }],
             response: {
                 200: schema.userResponse.array(),
             },
@@ -48,6 +50,7 @@ export default async (app: FastifyTypedInstance) => {
         schema: {
             tags: ['Users'],
             description: 'Get user by id',
+            security: [{ bearerAuth: [] }],
             response: {
                 200: findUserByIDResponseSchema,
             },
@@ -63,6 +66,7 @@ export default async (app: FastifyTypedInstance) => {
             tags: ['Users'],
             description: 'Update user by id',
             body: updateUserRequestSchema,
+            security: [{ bearerAuth: [] }],
             response: {
                 200: schema.userResponse,
             },
@@ -77,6 +81,7 @@ export default async (app: FastifyTypedInstance) => {
         schema: {
             tags: ['Users'],
             description: 'Delete user by id',
+            security: [{ bearerAuth: [] }],
             response: {
                 204: z.void(),
             },

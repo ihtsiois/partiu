@@ -18,6 +18,7 @@ export default async (app: FastifyTypedInstance) => {
         schema: {
             tags: ['Ticket Types'],
             body: createTicketTypeRequestSchema,
+            security: [{ bearerAuth: [] }],
             response: {
                 201: schema.ticketTypeResponse,
             },
@@ -31,6 +32,7 @@ export default async (app: FastifyTypedInstance) => {
         url: '/event/:event_id',
         schema: {
             tags: ['Ticket Types'],
+            security: [{ bearerAuth: [] }],
             response: {
                 200: schema.ticketTypeResponse.array(),
             },
@@ -44,6 +46,7 @@ export default async (app: FastifyTypedInstance) => {
         url: '/:ticket_type_id',
         schema: {
             tags: ['Ticket Types'],
+            security: [{ bearerAuth: [] }],
             response: {
                 200: schema.ticketTypeResponse,
             },
@@ -58,6 +61,7 @@ export default async (app: FastifyTypedInstance) => {
         schema: {
             tags: ['Ticket Types'],
             body: updateTicketTypeRequestSchema,
+            security: [{ bearerAuth: [] }],
             response: {
                 200: schema.ticketTypeResponse,
             },
@@ -71,6 +75,7 @@ export default async (app: FastifyTypedInstance) => {
         url: '/:ticket_type_id',
         schema: {
             tags: ['Ticket Types'],
+            security: [{ bearerAuth: [] }],
             response: {
                 204: z.void(),
             },

@@ -19,6 +19,7 @@ export default async (app: FastifyTypedInstance) => {
             tags: ['Events'],
             description: 'Register event',
             body: createEventRequestSchema,
+            security: [{ bearerAuth: [] }],
             response: {
                 201: schema.eventResponse,
             },
@@ -33,6 +34,7 @@ export default async (app: FastifyTypedInstance) => {
         schema: {
             tags: ['Events'],
             description: 'List events',
+            security: [{ bearerAuth: [] }],
             response: {
                 200: schema.eventResponse.array(),
             },
@@ -47,6 +49,7 @@ export default async (app: FastifyTypedInstance) => {
         schema: {
             tags: ['Events'],
             description: 'Get event by ID',
+            security: [{ bearerAuth: [] }],
             response: {
                 200: schema.eventResponse,
             },
@@ -62,6 +65,7 @@ export default async (app: FastifyTypedInstance) => {
             tags: ['Events'],
             description: 'Update event by ID',
             body: updateEventRequestSchema,
+            security: [{ bearerAuth: [] }],
             response: {
                 200: schema.eventResponse,
             },
@@ -76,7 +80,7 @@ export default async (app: FastifyTypedInstance) => {
         schema: {
             tags: ['Events'],
             description: 'Delete event by ID',
-
+            security: [{ bearerAuth: [] }],
             response: {
                 204: z.void(),
             },

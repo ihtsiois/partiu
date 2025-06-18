@@ -18,6 +18,7 @@ export default async (app: FastifyTypedInstance) => {
         schema: {
             tags: ['Ticket Offers'],
             body: createTicketOfferRequestSchema,
+            security: [{ bearerAuth: [] }],
             response: {
                 201: schema.ticketOfferResponse,
             },
@@ -31,6 +32,7 @@ export default async (app: FastifyTypedInstance) => {
         url: '/ticket-type/:ticket_type_id',
         schema: {
             tags: ['Ticket Offers'],
+            security: [{ bearerAuth: [] }],
             response: {
                 200: schema.ticketOfferResponse.array(),
             },
@@ -44,6 +46,7 @@ export default async (app: FastifyTypedInstance) => {
         url: '/:ticket_offer_id',
         schema: {
             tags: ['Ticket Offers'],
+            security: [{ bearerAuth: [] }],
             response: {
                 200: schema.ticketOfferResponse,
             },
@@ -58,6 +61,7 @@ export default async (app: FastifyTypedInstance) => {
         schema: {
             tags: ['Ticket Offers'],
             body: updateTicketOfferRequestSchema,
+            security: [{ bearerAuth: [] }],
             response: {
                 200: schema.ticketOfferResponse,
             },
@@ -71,6 +75,7 @@ export default async (app: FastifyTypedInstance) => {
         url: '/:ticket_offer_id',
         schema: {
             tags: ['Ticket Offers'],
+            security: [{ bearerAuth: [] }],
             response: {
                 204: z.void(),
             },
