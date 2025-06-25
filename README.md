@@ -3,3 +3,9 @@
 # Partiu! Tickets
 
 The tickets platform back-end.
+
+## TODO
+
+- [ ] Send Complete Event Address to Front-end (Store Endpoint)
+- [ ] Handle Payment Methods & Payment Providers Entities
+- [ ] Add Event Assets Upload
