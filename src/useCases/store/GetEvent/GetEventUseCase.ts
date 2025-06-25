@@ -24,13 +24,13 @@ export class GetEventUseCase {
         event.service_fee = event.absorve_fee ? 0 : event.service_fee;
 
         // Format Event Address
-        const address = formatAddress(event);
+        const inline_address = formatAddress(event);
         event.gmaps_url = event.gmaps_url || gmapUrl(event);
 
         // Is On Sale
         const is_on_sale = event.isSalesOpen();
 
         // Return Data
-        return { ...event, category, address, is_on_sale };
+        return { ...event, category, inline_address, is_on_sale };
     }
 }

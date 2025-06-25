@@ -21,7 +21,7 @@ export const getEventResponseSchema = z.object({
     age_rating: z.string(),
     start_date: z.date(),
     end_date: z.date(),
-    address: z.string().nullable(),
+    inline_address: z.string().nullable(),
     gmaps_url: z.string().nullable(),
 });
 
