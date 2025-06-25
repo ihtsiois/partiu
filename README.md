@@ -10,3 +10,4 @@ The tickets platform back-end.
 - [ ] Send Complete Event Address to Front-end (Store Endpoint)
 - [ ] Handle Payment Methods & Payment Providers Entities
 - [ ] Add Event Assets Upload
+- [ ] Add Event Theme Color
