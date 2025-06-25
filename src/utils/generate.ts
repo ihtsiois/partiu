@@ -6,15 +6,15 @@ export const genId = (prefix?: string, bytes?: number) => {
 };
 
 export const slugfy = (string: string, generateNumbers: boolean = false) => {
-    string = string
-        .trim()
-        .toLowerCase()
-        .replace(/[^a-zA-Z0-9]+/g, '-')
+    const slug = string
         .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '');
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
 
-    if (generateNumbers) return string + '-' + Math.floor(Math.random() * 1000000000);
-    return string;
+    return generateNumbers ? `${slug}-${Math.floor(Math.random() * 1_000_000)}` : slug;
 };
 
 type Address = {
