@@ -7,7 +7,7 @@ The tickets platform back-end.
 ## TODO
 
 - [x] Improve Slug Generation
-- [ ] Send Complete Event Address to Front-end (Store Endpoint)
+- [x] Send Complete Event Address to Front-end (Store Endpoint)
 - [ ] Handle Payment Methods & Payment Providers Entities
 - [ ] Add Event Assets Upload
 - [ ] Add Event Theme Color

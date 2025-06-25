@@ -22,6 +22,12 @@ export const getEventResponseSchema = z.object({
     start_date: z.date(),
     end_date: z.date(),
     inline_address: z.string().nullable(),
+    address_name: z.string().nullable(),
+    address_zip_code: z.string().nullable(),
+    address_country: z.string().nullable(),
+    address_region: z.string().nullable(),
+    address_city: z.string().nullable(),
+    address_line: z.string().nullable(),
     gmaps_url: z.string().nullable(),
 });
 
