@@ -6,7 +6,12 @@ export const createEventRequestSchema = z.object({
     is_private: z.boolean(),
     absorve_fee: z.boolean(),
     description: z.string().nullable().optional(),
-    category_id: z.string().nullable(),
+    category_id: z.string().nullable().optional(),
+    theme_color: z
+        .string()
+        .regex(/^#[0-9A-F]{6}[0-9a-f]{0,2}$/i)
+        .nullable()
+        .optional(),
     age_rating: z.enum(['for_all', 'min_10', 'min_12', 'min_14', 'min_16', 'min_18']),
     start_date: z.coerce.date(),
     end_date: z.coerce.date(),

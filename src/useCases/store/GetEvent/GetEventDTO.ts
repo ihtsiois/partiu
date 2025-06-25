@@ -18,6 +18,7 @@ export const getEventResponseSchema = z.object({
     banner_url: z.string().nullable(),
     thumbnail_url: z.string().nullable(),
     opengraph_url: z.string().nullable(),
+    theme_color: z.string().nullable(),
     age_rating: z.string(),
     start_date: z.date(),
     end_date: z.date(),

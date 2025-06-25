@@ -17,6 +17,7 @@ interface EventProps {
     banner_url?: string | null;
     thumbnail_url?: string | null;
     opengraph_url?: string | null;
+    theme_color?: string | null;
     age_rating: EventAgeRating;
     start_date: Date;
     end_date: Date;
@@ -47,6 +48,7 @@ export class Event {
     public banner_url: string | null;
     public thumbnail_url: string | null;
     public opengraph_url: string | null;
+    public theme_color: string | null;
     public age_rating: EventAgeRating;
     public start_date: Date;
     public end_date: Date;
@@ -76,6 +78,7 @@ export class Event {
         this.banner_url = props.banner_url || null;
         this.thumbnail_url = props.thumbnail_url || null;
         this.opengraph_url = props.opengraph_url || null;
+        this.theme_color = props.theme_color || null;
         this.age_rating = props.age_rating;
         this.start_date = props.start_date;
         this.end_date = props.end_date;
