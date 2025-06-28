@@ -18,8 +18,6 @@ export class GetEventUseCase {
         // Get Event
         const event = await this.eventsRepo.findBySlug(slug);
         if (!event) throw new AppError('event_not_exists', 404);
-        console.log(event);
-        console.log(typeof event);
 
         // Get Category
         const category = event.category_id ? await this.categoriesRepo.findById(event.category_id) : null;
@@ -29,12 +27,20 @@ export class GetEventUseCase {
         const ticket_types = await Promise.all(
             ticketTypes.map(async (ticketType) => {
                 const ticket_offers = await this.ticketOffersRepo.listByType(ticketType.id);
+                const sortedTicketOffers = ticket_offers.sort((a, b) => b.price - a.price);
                 return {
                     ...ticketType,
-                    offers: ticket_offers,
+                    offers: sortedTicketOffers,
                 };
             }),
         );
+
+        // Sort Ticket Types
+        const sortedTicketTypes = ticket_types.sort((a, b) => {
+            const maxA = a.offers[0]?.price ?? 0;
+            const maxB = b.offers[0]?.price ?? 0;
+            return maxA - maxB;
+        });
 
         // Update Service fee
         event.service_fee = event.absorve_fee ? 0 : event.service_fee;
@@ -47,6 +53,6 @@ export class GetEventUseCase {
         const is_on_sale = event.isSalesOpen();
 
         // Return Data
-        return { ...event, category, ticket_types, inline_address, is_on_sale };
+        return { ...event, category, ticket_types: sortedTicketTypes, inline_address, is_on_sale };
     }
 }

@@ -25,6 +25,8 @@ export class CreateTicketOfferUseCase {
             ticket_type_id: ticketType.id,
             title: data.title,
             description: data.description,
+            price: data.price,
+            quantity: data.quantity,
         });
         await this.ticketOffersRepo.save(ticketOffer);
 

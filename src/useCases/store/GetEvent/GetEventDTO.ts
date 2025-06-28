@@ -11,6 +11,7 @@ export const ticketOfferResponseSchema = z.object({
     id: z.string(),
     title: z.string(),
     description: z.string().nullable(),
+    price: z.number(),
 });
 
 export const ticketTypeResponseSchema = z.object({

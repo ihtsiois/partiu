@@ -153,10 +153,11 @@ model Event {
 }
 
 model TicketType {
-  id       String @id
-  event    Event  @relation(fields: [event_id], references: [id])
-  event_id String
-  name     String
+  id          String  @id
+  event       Event   @relation(fields: [event_id], references: [id])
+  event_id    String
+  name        String
+  description String?
 
   created_at  DateTime      @default(now())
   updated_at  DateTime      @default(now()) @updatedAt
@@ -172,6 +173,9 @@ model TicketOffer {
 
   title       String
   description String?
+
+  price    Int
+  quantity Int
 
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
