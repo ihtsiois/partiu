@@ -7,6 +7,9 @@ export const updateEventRequestSchema = z.object({
     absorve_fee: z.boolean().optional(),
     description: z.string().nullable().optional(),
     category_id: z.string().nullable().optional(),
+    banner_url: z.string().url().nullable().optional(),
+    thumbnail_url: z.string().url().nullable().optional(),
+    opengraph_url: z.string().url().nullable().optional(),
     theme_color: z
         .string()
         .regex(/^#[0-9A-F]{6}[0-9a-f]{0,2}$/i)
