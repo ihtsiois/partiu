@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { IAccessTokenProvider } from '../IAccessTokenProvider';
+import { AppError } from '@/plugins/errorHandler';
 
 export class JwtAccessTokenProvider implements IAccessTokenProvider {
     constructor(
@@ -13,6 +14,10 @@ export class JwtAccessTokenProvider implements IAccessTokenProvider {
     }
 
     verify(access_token: string): { sub: string } {
-        return jwt.verify(access_token, this.secret) as { sub: string };
+        try {
+            return jwt.verify(access_token, this.secret) as { sub: string };
+        } catch (err) {
+            throw new AppError('unauthorized', 401);
+        }
     }
 }
