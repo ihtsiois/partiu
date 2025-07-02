@@ -1,12 +1,39 @@
-<img src="https://partiu-development.s3.sa-east-1.amazonaws.com/static/logogh.png" alt="Partiu! Logo" height="100"/>
+<div align="center">
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="https://partiu-development.s3.sa-east-1.amazonaws.com/static/logo-dark.svg">
+        <img src="https://partiu-development.s3.sa-east-1.amazonaws.com/static/logo.svg" alt="Partiu! Logo" height="48"/>
+    </picture>
+    <h1 style="font-size:1.5rem">Partiu! – Tickets Platform</h1>
+    <p><i>Modern ticketing infrastructure for events, venues and experiences</i></p>
+    <hr />
+</div>
 
-# Partiu! Tickets
+## 🎟️ About
 
-The tickets platform back-end.
+This is the **back-end service** powering the **Partiu!** platform — a modern, secure and scalable solution for managing event ticket sales, validation, and access control.
 
-## TODO
+Built to serve online and on-site sales, it supports multiple sales channels, real-time validation, and complex pricing/offers logic.
 
-- [x] Improve Slug Generation
-- [x] Send Complete Event Address to Front-end (Store Endpoint)
-- [x] Add Event Theme Color
-- [ ] Handle Payment Methods & Payment Providers Entities
+---
+
+## 🚀 Features
+
+- 🧾 **Multi-offer ticketing** (early bird, lot-based, etc.)
+- 🏷️ **Discounts & coupons**
+- 🧍 **Personalized tickets**
+- 🎫 **QR Code issuance & validation**
+- 🧩 **Modular architecture**
+- 🔒 **OAuth2 & 2FA authentication**
+- 📈 **Real-time sales & access tracking**
+- 💳 **Online + physical POS integrations (future)**
+
+---
+
+## 📦 Tech Stack
+
+- **Node.js** with **Fastify**
+- **PostgreSQL** with **Prisma**
+- **Zod** for input validation
+- **OpenAPI (Swagger)** documentation
+- **TypeScript** first
+- Event-driven & clean architecture principles
