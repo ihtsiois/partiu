@@ -14,6 +14,26 @@ export class PrismaEventsRepository implements IEventsRepository {
         return events.map((e) => new Event(e, e.id));
     }
 
+    async listUpcoming(limit: number = 10): Promise<Event[]> {
+        const now = new Date();
+        const in30Days = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+
+        const events = await this.db.event.findMany({
+            where: {
+                start_date: {
+                    gte: now,
+                    lte: in30Days,
+                },
+            },
+            orderBy: {
+                start_date: 'asc',
+            },
+            take: limit,
+        });
+
+        return events.map((e) => new Event(e));
+    }
+
     async findById(id: string): Promise<Event | null> {
         const event = await this.db.event.findUnique({ where: { id } });
         if (!event) return null;

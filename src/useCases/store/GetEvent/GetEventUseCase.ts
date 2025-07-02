@@ -53,6 +53,6 @@ export class GetEventUseCase {
         const is_on_sale = event.isSalesOpen();
 
         // Return Data
-        return { ...event, category, ticket_types: sortedTicketTypes, inline_address, is_on_sale };
+        return { ...event, category, ticket_types: sortedTicketTypes, is_on_sale };
     }
 }

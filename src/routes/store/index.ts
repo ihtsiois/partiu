@@ -1,5 +1,5 @@
 import { FastifyTypedInstance } from '@/types/fastify';
-import { getEventController, getEventResponseSchema } from '@/useCases/store';
+import { getEventController, getEventResponseSchema, getFeedController, getFeedResponseSchema } from '@/useCases/store';
 
 export default async (app: FastifyTypedInstance) => {
     app.route({
@@ -13,5 +13,18 @@ export default async (app: FastifyTypedInstance) => {
             },
         },
         handler: getEventController.handle,
+    });
+
+    app.route({
+        method: 'GET',
+        url: '/feed',
+        schema: {
+            tags: ['Store'],
+            description: 'Get Feed',
+            response: {
+                200: getFeedResponseSchema,
+            },
+        },
+        handler: getFeedController.handle,
     });
 };
