@@ -1,7 +1,7 @@
 <div align="center">
     <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="https://partiu-development.s3.sa-east-1.amazonaws.com/static/logo-dark.svg">
-        <img src="https://partiu-development.s3.sa-east-1.amazonaws.com/static/logo.svg" alt="Partiu! Logo" height="48"/>
+        <source media="(prefers-color-scheme: dark)" srcset="./assets/logo-dark.svg">
+        <img src="./assets/logo.svg" alt="Partiu! Logo" height="48"/>
     </picture>
     <h1 style="font-size:1.5rem">Partiu! – Tickets Platform</h1>
     <p><i>Modern ticketing infrastructure for events, venues and experiences</i></p>
