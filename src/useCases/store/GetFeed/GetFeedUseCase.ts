@@ -1,9 +1,10 @@
 import { Event } from '@/entities/Event';
+import { StoreEvent, StoreEventData } from '@/entities/StoreEvent';
 import { IEventsRepository } from '@/repositories/IEventsRepository';
 
 interface FeedSection {
     title: string;
-    data: Event[];
+    data: StoreEventData[];
 }
 
 export class GetFeedUseCase {
@@ -14,7 +15,10 @@ export class GetFeedUseCase {
 
         // Get upcoming events
         const upcoming = await this.eventsRepo.listUpcoming();
-        if (upcoming.length > 0) feed.push({ title: 'Nos próximos dias', data: upcoming });
+        if (upcoming.length > 0) {
+            const storeEvents = upcoming.map((event) => StoreEvent.fromEvent(event));
+            feed.push({ title: 'Nos próximos dias', data: storeEvents.map((se) => se.data) });
+        }
 
         return feed;
     }

@@ -1,4 +1,4 @@
-import { formatAddress, genId, gmapUrl, slugfy } from '@/utils/generate';
+import { genId, slugfy } from '@/utils/generate';
 
 export type EventType = 'online' | 'in_person' | 'hybrid';
 export type EventAgeRating = 'for_all' | 'min_10' | 'min_12' | 'min_14' | 'min_16' | 'min_18';
@@ -54,7 +54,6 @@ export class Event {
     public end_date: Date;
     public sales_starts_at: Date;
     public sales_ends_at: Date;
-    public inline_address: string | null;
     public address_name: string | null;
     public address_zip_code: string | null;
     public address_country: string | null;
@@ -85,14 +84,13 @@ export class Event {
         this.end_date = props.end_date;
         this.sales_starts_at = props.sales_starts_at;
         this.sales_ends_at = props.sales_ends_at;
-        this.inline_address = formatAddress(props);
         this.address_name = props.address_name || null;
         this.address_zip_code = props.address_zip_code || null;
         this.address_country = props.address_country || null;
         this.address_region = props.address_region || null;
         this.address_city = props.address_city || null;
         this.address_line = props.address_line || null;
-        this.gmaps_url = props.gmaps_url || gmapUrl(props);
+        this.gmaps_url = props.gmaps_url || null;
     }
 
     public isSalesOpen(): boolean {
