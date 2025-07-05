@@ -23,12 +23,10 @@ export class GetEventUseCase {
         const storeEvent = StoreEvent.fromEvent(event);
 
         // Get Category
-        const category = storeEvent.data.category_id
-            ? await this.categoriesRepo.findById(storeEvent.data.category_id)
-            : null;
+        const category = storeEvent.category_id ? await this.categoriesRepo.findById(storeEvent.category_id) : null;
 
         // Get Ticket Types
-        const ticketTypes = await this.ticketTypesRepo.listByEvent(storeEvent.data.id);
+        const ticketTypes = await this.ticketTypesRepo.listByEvent(storeEvent.id);
         const ticket_types = await Promise.all(
             ticketTypes.map(async (ticketType) => {
                 const ticket_offers = await this.ticketOffersRepo.listByType(ticketType.id);
@@ -48,14 +46,14 @@ export class GetEventUseCase {
         });
 
         // Calculate service fee
-        const service_fee = storeEvent.data.absorve_fee ? 0 : storeEvent.data.service_fee;
+        const service_fee = storeEvent.absorve_fee ? 0 : storeEvent.service_fee;
 
         // Is On Sale
         const is_on_sale = storeEvent.isSalesOpen();
 
         // Return Data
         return {
-            ...storeEvent.data,
+            ...storeEvent,
             service_fee,
             category,
             ticket_types: sortedTicketTypes,
